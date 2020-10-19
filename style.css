@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    height: 10vh;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    background-color: green;
+    top: 0;
+    font-size: 2em;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    background-color: firebrick;
+    height: 90vh;
+    width: 80vw;
+    margin-left: 20vw;
+    margin-top: 10vh;   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav {
+    width: 20vw;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    background-color: dodgerblue;
+}
+
+nav > a {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: darkslategray;
+    font-size: 2em;
+    text-decoration: none;
+    color: white;
+}
+
+nav > a:hover:not(.activePage) {
+    background-color: darksalmon;
+}
+
+.loginDiv {
+    background-color: lavenderblush;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 40vw;
+    height: 30vh;
+    margin-top: 10vh;
+
+}
+
+.loginDiv > h2 {
+    margin: 0;
+}
+
+.loginInputs {
+    padding: 10px;
+    font-size: 1.5em;
+}
+
+.activePage {
+    border: 2px solid black;
+    background-color: lightgreen;
+}
+
+.myButtons {
+    font-size: 1.3em;
+}
