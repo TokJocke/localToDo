@@ -14,16 +14,19 @@ header {
     background-color: dodgerblue;
     top: 0;
     font-size: 2em;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid black;
 }
 
+header > h1 {
+    margin-right: 5vw;;
+}
+
 main {
-    background-color: firebrick;
+    background-color: lavenderblush;
     height: 90vh;
-    width: 80vw;
-    margin-left: 20vw;
+    width: 100vw;
     margin-top: 10vh;   
     display: flex;
     flex-direction: column;
@@ -31,23 +34,20 @@ main {
 }
 
 nav {
-    width: 20vw;
-    height: 95vh;
+ 
     display: flex;
-    flex-direction: column;
-    position: fixed;
     background-color: dodgerblue;
-    border-right: 2px solid black;
 }
 
 nav > a {
     width: 100%;
     height: 10vh;
+    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: darkslategray;
-    font-size: 2em;
+    font-size: 1em;
     text-decoration: none;
     color: white;
 }
@@ -57,14 +57,15 @@ nav > a:hover:not(.activePage) {
 }
 
 .loginDiv {
-    background-color: lavenderblush;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     width: 40vw;
     height: 30vh;
-    margin-top: 10vh;
+    margin-top: 5vh;
+    background-color: lightblue;
+    border-radius: 10%;
 
 }
 
@@ -78,7 +79,6 @@ nav > a:hover:not(.activePage) {
 }
 
 .activePage {
-    border: 2px solid black;
     background-color: lightgreen;
 }
 

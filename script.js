@@ -32,11 +32,6 @@ function checkUser() {
     return myListName
 }
  
-
-
-
-
-
 //Lägg till i array och skicka till localStorage
 function addToArray() {
     let myArray = getUserList()
