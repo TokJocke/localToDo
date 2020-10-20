@@ -18,18 +18,20 @@ function saveArrayToLocal(arrayToLocal) {
     localStorage.setItem("users", JSON.stringify(arrayToLocal))
 }
 
-
-function checkUser() { // Inte klar
+//Kollar om användar namnet redan finns och retunerar true eller false
+function checkUser() { 
     let myList = getUserList() 
     let nameToCheck = document.getElementById("registerUserName").value
     
+    myListName = false
     for(i = 0; i < myList.length; i++){
-
+        if(nameToCheck == myList[i].name) {
+            myListName = true
+        }
     }
+    return myListName
 }
  
-
-
 
 
 
@@ -53,10 +55,16 @@ function addToArrayOnClick() {
 
     registerButton.addEventListener("click", () => {
         
-        
-    
-     
+        checkUser()
+       
+        if(myListName == true){
+            console.log("user already exists")
+        }
+        else {
             addToArray()
+            
+        }
+
         
     })
 
