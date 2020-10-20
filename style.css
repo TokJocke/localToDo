@@ -11,11 +11,12 @@ header {
     width: 100%;
     position: fixed;
     display: flex;
-    background-color: green;
+    background-color: dodgerblue;
     top: 0;
     font-size: 2em;
     justify-content: center;
     align-items: center;
+    border-bottom: 2px solid black;
 }
 
 main {
@@ -36,6 +37,7 @@ nav {
     flex-direction: column;
     position: fixed;
     background-color: dodgerblue;
+    border-right: 2px solid black;
 }
 
 nav > a {
