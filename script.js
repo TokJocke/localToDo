@@ -17,11 +17,9 @@ function getUserList() {
 function saveArrayToLocal(arrayToLocal) {
     localStorage.setItem("users", JSON.stringify(arrayToLocal))
 }
-
 //Kollar om användar namnet redan finns och retunerar true eller false
-function checkUser() { 
+function checkUser(nameToCheck) { 
     let myList = getUserList() 
-    let nameToCheck = document.getElementById("registerUserName").value
     
     myListName = false
     for(i = 0; i < myList.length; i++){
@@ -31,7 +29,6 @@ function checkUser() {
     }
     return myListName
 }
- 
 //Lägg till i array och skicka till localStorage
 function addToArray() {
     let myArray = getUserList()
@@ -49,23 +46,42 @@ function addToArrayOnClick() {
     let registerButton = document.getElementById("registerButton")
 
     registerButton.addEventListener("click", () => {
-        
-        checkUser()
-       
+        let registerUserName = document.getElementById("registerUserName").value
+        checkUser(registerUserName)     
+        //Använd funktion som kollar om användarnamnet redan finns, om sant meddela "user already exists"
         if(myListName == true){
             console.log("user already exists")
         }
+        //Annars kör funktionen addToArray
         else {
-            addToArray()
-            
-        }
-
-        
+            addToArray()   
+        }    
     })
+}
+
+function login() {
+    let loginButton = document.getElementById("loginButton")
+
+    loginButton.addEventListener("click", () => {
+        let userName = document.getElementById("userName").value
+        checkUser(userName)
+
+        if(myListName == true){
+            console.log("sant")
+            sessionStorage.setItem("user", userName)
+            window.location = "index.html"
+        }
+        else{
+            console.log("falskt")
+        }
+    })
+
 
 }
 
 
-addToArrayOnClick()
 
+
+addToArrayOnClick()
+login()
 
