@@ -11,7 +11,7 @@ header {
     width: 100%;
     position: fixed;
     display: flex;
-    background-color: dodgerblue;
+    background-color: rgb(197, 243, 243);
     top: 0;
     font-size: 2em;
     justify-content: space-between;
