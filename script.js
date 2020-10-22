@@ -37,7 +37,8 @@ function addToArray() {
     console.log(myArray, "addToArrayFunction")
     myArray.push({
         name: registerUserName,
-        password: registerPassword
+        password: registerPassword,
+        post: []
     })
      saveArrayToLocal(myArray)
 }

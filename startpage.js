@@ -12,28 +12,29 @@ function checkSession() {
     }
     return mySession
 }
+//change content of login button
+function buttonText() {
+    if(checkSession() == true){
+        loginOrOut.innerText = "Logga ut"
+    }
+    else{
+        loginOrOut.innerText ="Logga in"
+    }
+}
 //Dynamisk funktion bereonde på om användare är inloggad eller inte
 function loginOrLogout() {
     let loginOrOut = document.getElementById("loginOrOut")
     
-    function buttonText() {
-        if(checkSession() == true){
-            loginOrOut.innerText = "Logga ut"
-        }
-        else{
-            loginOrOut.innerText ="Logga in"
-        }
-    }
 
     if(checkSession() == true){
         
         console.log("du är inloggad")
         buttonText()
-        createHtmlForLoggedIn()
+        createInputForm()
         loginOrOut.addEventListener("click", () => {
             sessionStorage.clear()
             loginOrLogout()
-            createHtmlForLoggedIn()
+            location.reload()
         })
         
     }
@@ -44,67 +45,54 @@ function loginOrLogout() {
         })
     }
 }
-//Skapa alla element som ska finnas när användare är inloggad
-function createHtmlForLoggedIn() {
-    //Skapa en dynamisk titel som lägger sig i Headern
-    function loggedInTitle() {
-        let myHeader = document.getElementById("myHeader")
-        let pageTitle = document.getElementById("pageTitle")
-        let loggedInTitle = document.createElement("p")
-        loggedInTitle.className = "loggedInTitle"
-        loggedInTitle.innerText = "inloggad som" + " " + sessionStorage.user
-        
-        myHeader.insertBefore(loggedInTitle, pageTitle);
-        return loggedInTitle
-    }
-    //Skapa en container som wrappar alla mina toDo element
-    function createLoggedInWrap() {
-        let main = document.getElementById("myMain")
-        toDoWrap = document.createElement("div")
-        toDoWrap.className = "toDoWrap"
-        main.appendChild(toDoWrap)
-      
-        return toDoWrap
-    }
-    //Skapa en titel input för todo
-    function createInputTitle() {
-        let inputToDoTitle = document.createElement("input")
-        inputToDoTitle.className = "toDoInput"
-        inputToDoTitle.id = "inputToDoName"
-        inputToDoTitle.placeholder = "Title"
-        return inputToDoTitle
-    }
-    //skapa en description input för todo
-    function createInputDescription() {
-        let inputToDoDescription = document.createElement("input")
-        inputToDoDescription.className = "toDoInput"
-        inputToDoDescription.id = "inputToDoDescription"
-        inputToDoDescription.placeholder ="description"
-        return inputToDoDescription
-    }
-    //skapa en knapp för att submita todo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function createInputForm() {
+    //Create a button(inprogress create onclick function that save avlues in localstorage)
     function toDoButton() {
-        let toDoButton = document.createElement("button")
-        toDoButton.className = "toDoButton"
-        toDoButton.innerText = "submit"
-        return toDoButton
-    }
-    //Fäst eller ta bort mina element på min sida
-    if(checkSession() == true){
-        loggedInTitle()
-        createLoggedInWrap()
-    
-        toDoWrap.appendChild(createInputTitle())
-        toDoWrap.appendChild(createInputDescription())
-        toDoWrap.appendChild(toDoButton()) 
-    }
-    else {
+        let myButton = document.createElement("button")
+        myButton.className = "toDoButton"
+        myButton.innerText = "submit"
         
-        toDoWrap.parentNode.removeChild(toDoWrap);
+        myButton.addEventListener("click", () => {
+            console.log(inputToDoTitle.value)
+        })
         
-    }
+        return myButton
+    } 
     
-}
+    //create html and save "main" variable
+    let main = document.getElementById("myMain")
+    let toDoWrap = document.createElement("div")
+    let inputToDoTitle = document.createElement("input")
+    let inputToDoDescription = document.createElement("input")
+    //properties for create elements
+    inputToDoTitle.placeholder = "Title"
+    inputToDoTitle.className = "toDoInput"
+    inputToDoDescription.placeholder ="description"
+    inputToDoDescription.className = "toDoInput"
+    toDoWrap.className = "toDoWrap"
+    
+    
+    //make my content visisble   
+
+    main.appendChild(toDoWrap)
+    toDoWrap.appendChild(inputToDoTitle)
+    toDoWrap.appendChild(inputToDoDescription)
+    toDoWrap.appendChild(toDoButton())
+ }
 
 
 
