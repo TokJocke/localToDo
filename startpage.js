@@ -67,8 +67,29 @@ function createInputForm() {
         myButton.innerText = "submit"
         
         myButton.addEventListener("click", () => {
-            console.log(inputToDoTitle.value)
-        })
+            let localArray = localStorage.getItem("users")
+            let activeUser = sessionStorage.getItem("user")
+            localArray = JSON.parse(localArray)
+                                                            //Nära lösning, kan lägga till ett object i en array men efter det stör den ut inlogg och regg
+            
+            /*  for(i = 0; i < localArray.length; i++){
+                if(activeUser == localArray[i].name){  
+                let postToSave = localArray[i]
+                
+                console.log(postToSave)
+                    
+                postToSave.post.push({
+                    toDoTitle: inputToDoTitle.value
+                })
+
+                localStorage.setItem("users", JSON.stringify(postToSave))
+
+ 
+                console.log("my posts ", localArray[i].post)
+                console.log("username", localArray[i].name) 
+                }
+             } */
+        }) 
         
         return myButton
     } 
