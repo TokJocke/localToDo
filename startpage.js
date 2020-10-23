@@ -70,9 +70,9 @@ function createInputForm() {
             let localArray = localStorage.getItem("users")
             let activeUser = sessionStorage.getItem("user")
             localArray = JSON.parse(localArray)
-                                                            //Nära lösning, kan lägga till ett object i en array men efter det stör den ut inlogg och regg
-            
-            /*  for(i = 0; i < localArray.length; i++){
+                                                            //Nära lösning, kan lägga till ett object i en array men efter det stör den ut inlogg och regg,
+                                                            // kan dessutom inte lägga till en post igen. ****När post pushas tas alla användare bort utan den aktuella*****
+              for(i = 0; i < localArray.length; i++){       // Problem identifierar som när min post pushas görs keyn om från array till object.    
                 if(activeUser == localArray[i].name){  
                 let postToSave = localArray[i]
                 
@@ -82,13 +82,13 @@ function createInputForm() {
                     toDoTitle: inputToDoTitle.value
                 })
 
-                localStorage.setItem("users", JSON.stringify(postToSave))
+                localStorage.setItem("users", JSON.stringify(localArray))
 
  
                 console.log("my posts ", localArray[i].post)
                 console.log("username", localArray[i].name) 
                 }
-             } */
+             } 
         }) 
         
         return myButton

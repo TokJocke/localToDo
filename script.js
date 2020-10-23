@@ -18,12 +18,12 @@ function saveArrayToLocal(arrayToLocal) {
     localStorage.setItem("users", JSON.stringify(arrayToLocal))
 }
 //Kollar om användar namnet redan finns och retunerar true eller false
-function checkUser(nameToCheck) { 
+function checkUser(nameToCheck, passwordToCheck) { 
     let myList = getUserList() 
     
     myListName = false
     for(i = 0; i < myList.length; i++){
-        if(nameToCheck == myList[i].name) {
+        if(nameToCheck == myList[i].name && passwordToCheck == myList[i].password) {
             myListName = true
         }
     }
@@ -65,7 +65,8 @@ function login() {
 
     loginButton.addEventListener("click", () => {
         let userName = document.getElementById("userName").value
-        checkUser(userName)
+        let password = document.getElementById("password").value
+        checkUser(userName, password)
 
         if(myListName == true){
             console.log("sant")
