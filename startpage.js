@@ -47,8 +47,41 @@ function loginOrLogout() {
 }
 
 
+function printToDo() {
+    if(checkSession() == true){
+        let printToDoWrap = document.createElement("div")
+        let main = document.getElementById("myMain")
 
 
+        let mySavedObjects = localStorage.getItem("users")
+        mySavedObjects = JSON.parse(mySavedObjects)
+
+                                                            //inprogress, prinar ut vilken användare det än är. Misstänker att det bör lösas med en if sats
+        for(i = 0; i < mySavedObjects.length; i++){         //som verifierar vilken användare som är inloggad
+            mySavedPosts = mySavedObjects[i].post
+            //Create an if on match between Session user and local user
+            for(i = 0; i < mySavedPosts.length; i++){
+                
+                let printToDoTitle = document.createElement("h2")
+                let printToDoDescription = document.createElement("p")
+
+                printToDoTitle.innerText = mySavedPosts[i].toDoTitle
+                printToDoDescription.innerText = mySavedPosts[i].toDoDescription
+                
+                main.appendChild(printToDoWrap)
+                printToDoWrap.appendChild(printToDoTitle)
+                printToDoWrap.appendChild(printToDoDescription)
+                console.log(mySavedPosts[i].toDoTitle)
+                
+            }        
+        }
+
+
+        
+
+    }
+
+}
 
 
 
@@ -60,37 +93,28 @@ function loginOrLogout() {
 
 
 function createInputForm() {
-    //Create a button(inprogress create onclick function that save avlues in localstorage)
+    //Skapar knapp som funktion i funktion för att komma åt de values jag behöver för att "onClick" pusha nytt object till min localstorage
     function toDoButton() {
         let myButton = document.createElement("button")
         myButton.className = "toDoButton"
-        myButton.innerText = "submit"
-        
+        myButton.innerText = "submit"        
         myButton.addEventListener("click", () => {
             let localArray = localStorage.getItem("users")
             let activeUser = sessionStorage.getItem("user")
             localArray = JSON.parse(localArray)
-                                                            //Nära lösning, kan lägga till ett object i en array men efter det stör den ut inlogg och regg,
-                                                            // kan dessutom inte lägga till en post igen. ****När post pushas tas alla användare bort utan den aktuella*****
-              for(i = 0; i < localArray.length; i++){       // Problem identifierar som när min post pushas görs keyn om från array till object.    
+                                                            //Nära lösning(problem löst), kan lägga till ett object i en array men efter det stör den ut inlogg och regg,
+                                                            // Problemet var att min nya post pushades som object och ersatte min array.
+              for(i = 0; i < localArray.length; i++){       // Löste genom att pusha mitt object till array och sen setItem "array". Låter tankar stå kvar för framtiden
                 if(activeUser == localArray[i].name){  
-                let postToSave = localArray[i]
-                
-                console.log(postToSave)
-                    
+                let postToSave = localArray[i]      
                 postToSave.post.push({
-                    toDoTitle: inputToDoTitle.value
+                    toDoTitle: inputToDoTitle.value,
+                    toDoDescription: inputToDoDescription.value
                 })
-
                 localStorage.setItem("users", JSON.stringify(localArray))
-
- 
-                console.log("my posts ", localArray[i].post)
-                console.log("username", localArray[i].name) 
                 }
              } 
         }) 
-        
         return myButton
     } 
     
@@ -120,3 +144,6 @@ function createInputForm() {
 
 
 loginOrLogout()
+
+
+printToDo()
